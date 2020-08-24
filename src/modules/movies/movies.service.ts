@@ -12,7 +12,11 @@ export class MoviesService {
     ) {}
 
     public async searchMovie(searchParams: SearchMoviesDto) {
-        return this.omdbapiService.search(searchParams)
+        const movie = await this.omdbapiService.search(searchParams)
+
+        const savedMovie = await this.movieRepository.createIfNotExists(movie)
+        
+        return savedMovie
     }
 
 }
