@@ -3,6 +3,7 @@ import { InjectModel } from 'nestjs-typegoose';
 import { ReturnModelType } from "@typegoose/typegoose";
 
 import { Movie } from './movie.model';
+import { GetSavedMoviesDto } from '../dto/get-saved-movies.dto';
 
 @Injectable()
 export class MovieRepository {
@@ -16,5 +17,9 @@ export class MovieRepository {
         }
 
         return this.movieModel.create(dto)
+    }
+
+    public async find({ limit, skip }: GetSavedMoviesDto): Promise<Movie[]> {
+        return this.movieModel.find().limit(limit).skip(skip)
     }
 }
