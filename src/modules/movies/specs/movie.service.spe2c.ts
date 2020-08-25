@@ -2,10 +2,10 @@ import { Types } from 'mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
 import { validate } from 'class-validator';
 
-import { MovieRepository } from './../model/movie.repository';
-import { MoviesService } from './../movies.service';
+import { MovieRepository } from '../model/movie.repository';
+import { MoviesService } from '../movies.service';
 import { MovieRepositoryFake } from './movie.repository.fake';
-import { Movie } from './../model/movie.model';
+import { Movie } from '../model/movie.model';
 
 describe('MoviesService', () => {
     let moviesService: MoviesService;

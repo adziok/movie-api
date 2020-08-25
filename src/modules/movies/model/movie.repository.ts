@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from 'nestjs-typegoose';
-import { ReturnModelType } from "@typegoose/typegoose";
+import { Injectable } from '@nestjs/common'
+import { InjectModel } from 'nestjs-typegoose'
+import { ReturnModelType } from "@typegoose/typegoose"
 
-import { Movie } from './movie.model';
-import { GetSavedMoviesDto } from '../dto/get-saved-movies.dto';
+import { Movie } from './movie.model'
+import { DefaultFindOptionsType } from '@shared/types/default-find-options.type'
 
 @Injectable()
 export class MovieRepository {
@@ -13,13 +13,14 @@ export class MovieRepository {
         const existingMovie = await this.movieModel.findOne({ title: dto.title, relasedAt: dto.relasedAt })
 
         if (existingMovie) {
-            return existingMovie;
+            return existingMovie
         }
 
         return this.movieModel.create(dto)
     }
 
-    public async find({ limit, skip }: GetSavedMoviesDto): Promise<Movie[]> {
+    public async find({ limit, skip }: DefaultFindOptionsType): Promise<Movie[]> {
         return this.movieModel.find().limit(limit).skip(skip)
     }
+
 }

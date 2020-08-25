@@ -1,8 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypegooseModule } from 'nestjs-typegoose';
 
-import { CoreController } from './core.controller';
-import { CoreService } from './core.service';
 import { SharedModule } from '@shared/shared.module';
 import { ConfigModule } from '@shared/modules/config/config.module';
 import { ConfigService } from '@shared/modules/config/config.service';
@@ -23,8 +21,6 @@ import { MoviesModule } from '@modules/movies/movies.module';
         }),
         SharedModule,
         MoviesModule
-    ],
-    controllers: [CoreController],
-    providers: [CoreService],
+    ]
 })
 export class CoreModule {}

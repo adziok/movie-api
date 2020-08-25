@@ -35,20 +35,12 @@ export class ConfigService {
                 return Number(this.envConfig.PORT);
         }
 
-        get jwtSecret(): string {
+        get restSecret(): string {
                 return this.envConfig.JWT_SECRET;
         }
 
         get mongoConnectionString(): string {
                 return `${this.envConfig.MONGO_HOST}:${this.envConfig.MONGO_PORT}/${this.envConfig.MONGO_DATABASE}`;
-        }
-
-        get redisUrl(): string {
-                return this.envConfig.REDIS_URL;
-        }
-
-        get redisPort(): string {
-                return this.envConfig.REDIS_PORT;
         }
 
         get omdbapiApiUrl(): string {

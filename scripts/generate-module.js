@@ -2,10 +2,10 @@
 const fs = require('fs');
 
 const config = {
-    name: 'Movies',
-    nameToLowerCase: 'movies',
-    schema: 'Movie',
-    schemaLowerCase: 'movie'
+    name: 'Comments',
+    nameToLowerCase: 'comments',
+    schema: 'Comment',
+    schemaLowerCase: 'comment'
 };
 
 const startWithLowerCase = (t) => t[0].toLowerCase()+t.slice(1,Infinity)

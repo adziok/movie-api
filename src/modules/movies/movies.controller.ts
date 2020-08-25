@@ -2,7 +2,7 @@ import { Controller, Get, Query, Post, Body } from '@nestjs/common';
 
 import { MoviesService } from './movies.service';
 import { SearchMoviesDto } from '@shared/dtos/search-movies.dto';
-import { GetSavedMoviesDto } from './dto/get-saved-movies.dto';
+import { GetSavedMoviesDto } from './dtos/get-saved-movies.dto';
 
 @Controller('/movies')
 export class MoviesController {
