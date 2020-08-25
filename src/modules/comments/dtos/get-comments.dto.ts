@@ -9,5 +9,4 @@ export class GetCommentsDto {
     @IsNumber()
     @Min(0)
     skip = 0
-
 }

@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core'
 import { ValidationPipe } from '@nestjs/common'
 
-import { CoreModule } from '@core/core.module';
+import { CoreModule } from '@core/core.module'
 import { ConfigService } from '@shared/modules/config/config.service'
 import { RestGuard } from '@shared/guards/rest.guard'
 

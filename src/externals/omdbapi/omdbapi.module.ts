@@ -1,6 +1,6 @@
-import { Module } from '@nestjs/common';
+import { Module } from '@nestjs/common'
 
-import { OmdbapiService } from './omdbapi.service';
+import { OmdbapiService } from './omdbapi.service'
 
 @Module({
     providers: [OmdbapiService],

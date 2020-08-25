@@ -1,10 +1,10 @@
-import { Module } from '@nestjs/common';
-import { TypegooseModule } from 'nestjs-typegoose';
+import { Module } from '@nestjs/common'
+import { TypegooseModule } from 'nestjs-typegoose'
 
-import { SharedModule } from '@shared/shared.module';
-import { ConfigModule } from '@shared/modules/config/config.module';
-import { ConfigService } from '@shared/modules/config/config.service';
-import { MoviesModule } from '@modules/movies/movies.module';
+import { SharedModule } from '@shared/shared.module'
+import { ConfigModule } from '@shared/modules/config/config.module'
+import { ConfigService } from '@shared/modules/config/config.service'
+import { MoviesModule } from '@modules/movies/movies.module'
 
 @Module({
     imports: [
@@ -20,7 +20,7 @@ import { MoviesModule } from '@modules/movies/movies.module';
             inject: [ConfigService],
         }),
         SharedModule,
-        MoviesModule
-    ]
+        MoviesModule,
+    ],
 })
 export class CoreModule {}

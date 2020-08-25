@@ -3,7 +3,6 @@ import { Exclude, Expose } from 'class-transformer'
 import { OmdbapiRatingInterface } from '../interfaces/omdbapi-rating.interface'
 
 export class MovieRateAdapter {
-
     @Exclude()
     private adaptee: OmdbapiRatingInterface
 
@@ -20,5 +19,4 @@ export class MovieRateAdapter {
     get value() {
         return this.adaptee.Value
     }
-
 }

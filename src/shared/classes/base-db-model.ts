@@ -1,10 +1,9 @@
-import { Types } from 'mongoose';
+import { Types } from 'mongoose'
 
 export class BaseDBOBject {
     // tslint:disable-next-line: variable-name
-    _id?: Types.ObjectId;
+    _id?: Types.ObjectId
 
-
-    createdAt?: Date;
-    updatedAt?: Date;
+    createdAt?: Date
+    updatedAt?: Date
 }

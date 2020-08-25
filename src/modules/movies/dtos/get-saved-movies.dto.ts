@@ -9,5 +9,4 @@ export class GetSavedMoviesDto {
     @IsNumber()
     @Min(0)
     skip = 0
-
 }

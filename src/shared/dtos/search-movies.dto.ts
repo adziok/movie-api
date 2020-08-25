@@ -8,6 +8,5 @@ export class SearchMoviesDto {
 
     @IsString()
     @IsNotEmpty()
-    search: string;
-
+    search: string
 }

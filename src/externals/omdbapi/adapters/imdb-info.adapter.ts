@@ -3,7 +3,6 @@ import { Exclude, Expose } from 'class-transformer'
 import { OmdbapiResponseInterface } from '../interfaces/omdbapi-response.interface'
 
 export class ImdbInfoAdapter {
-
     @Exclude()
     private adaptee: OmdbapiResponseInterface
 
@@ -25,5 +24,4 @@ export class ImdbInfoAdapter {
     get id() {
         return this.adaptee.imdbID
     }
-
 }

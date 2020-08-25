@@ -10,5 +10,4 @@ export class CreateCommentDto {
     @IsNotEmpty()
     @Length(1, 2048)
     content: string
-
 }

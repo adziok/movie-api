@@ -1,13 +1,11 @@
-import { MovieRateAdapter } from './movie-rate.adapter';
+import { MovieRateAdapter } from './movie-rate.adapter'
 import { Exclude, Expose, classToPlain } from 'class-transformer'
 
 import { UNDEF_VAL } from '@shared/constants/undefined-value.const'
 import { OmdbapiResponseInterface } from './../interfaces/omdbapi-response.interface'
-import { ImdbInfoAdapter } from './imdb-info.adapter';
-
+import { ImdbInfoAdapter } from './imdb-info.adapter'
 
 export class OmdbapiMovieAdapter {
-
     @Exclude()
     private adaptee: OmdbapiResponseInterface
 
@@ -22,7 +20,10 @@ export class OmdbapiMovieAdapter {
 
     @Expose()
     get relasedAt() {
-        return this.adaptee.Released && new Date(this.adaptee.Released) || UNDEF_VAL
+        return (
+            (this.adaptee.Released && new Date(this.adaptee.Released)) ||
+            UNDEF_VAL
+        )
     }
 
     @Expose()
@@ -37,7 +38,9 @@ export class OmdbapiMovieAdapter {
 
     @Expose()
     get genre(): string[] {
-        return this.adaptee?.Genre?.split(',').map(genere => genere.trim()) || []
+        return (
+            this.adaptee?.Genre?.split(',').map(genere => genere.trim()) || []
+        )
     }
 
     @Expose()
@@ -52,7 +55,9 @@ export class OmdbapiMovieAdapter {
 
     @Expose()
     get actors() {
-        return this.adaptee.Actors?.split(',').map(genere => genere.trim()) || []
+        return (
+            this.adaptee.Actors?.split(',').map(genere => genere.trim()) || []
+        )
     }
 
     @Expose()
@@ -82,12 +87,16 @@ export class OmdbapiMovieAdapter {
 
     @Expose()
     get ratings() {
-        return this.adaptee.Ratings?.map(rate => classToPlain(new MovieRateAdapter(rate))) || []
+        return (
+            this.adaptee.Ratings?.map(rate =>
+                classToPlain(new MovieRateAdapter(rate)),
+            ) || []
+        )
     }
 
     @Expose()
     get metascore(): number {
-        return Number(this.adaptee.Metascore) || undefined 
+        return Number(this.adaptee.Metascore) || undefined
     }
 
     @Expose()
@@ -119,5 +128,4 @@ export class OmdbapiMovieAdapter {
     get website() {
         return this.adaptee.Website
     }
-
 }

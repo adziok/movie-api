@@ -1,13 +1,13 @@
-import { MovieRate } from './movie-rate.model';
-import { prop, arrayProp } from '@typegoose/typegoose';
+import { MovieRate } from './movie-rate.model'
+import { prop, arrayProp } from '@typegoose/typegoose'
 
-import { BaseDBOBject } from '@shared/classes/base-db-model';
-import { ImdbInfo } from './imdb-info.model';
+import { BaseDBOBject } from '@shared/classes/base-db-model'
+import { ImdbInfo } from './imdb-info.model'
 
 export class Movie extends BaseDBOBject {
     @prop({ required: true })
     title: string
-    
+
     @prop({ required: true })
     relasedAt: Date
 
@@ -22,16 +22,16 @@ export class Movie extends BaseDBOBject {
 
     @prop({ required: true })
     director: string
-    
+
     @prop()
     writer: string
-    
+
     @arrayProp({ items: String })
     actors: string[]
 
     @prop()
     plot: string
-    
+
     @prop()
     language: string
 
@@ -43,29 +43,28 @@ export class Movie extends BaseDBOBject {
 
     @prop()
     poster: string
-    
+
     @arrayProp({ items: MovieRate, _id: false })
     ratings: MovieRate[]
-    
+
     @prop()
     metascore: number
-    
+
     @prop({ _id: false })
     imdbInfo: ImdbInfo
-    
+
     @prop()
     type: string
-    
+
     @prop()
     dvdRelasedAt?: Date | string
-    
+
     @prop()
     boxOffice: string
-    
+
     @prop()
     production: string
-    
+
     @prop()
     website: string
-
 }

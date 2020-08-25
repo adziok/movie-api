@@ -17,5 +17,4 @@ export class CommentsController {
     public getComments(@Query() query: GetCommentsDto) {
         return this.commentsService.getComments(query)
     }
-
 }
