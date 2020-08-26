@@ -5,8 +5,8 @@ import { Test, TestingModule } from '@nestjs/testing'
 import { CreateCommentDto } from '../dtos/create-comment.dto'
 import { CommentRepository } from '../model/comment.repository'
 import { CommentsService } from '../comments.service'
-import { repositoryMockFactory, MockType } from './comments.repository.fake'
 import { Comment } from '../model/comment.model'
+import { MockType, repositoryMockFactory } from '@shared/utils/specs.utils'
 
 describe('-- Comments Service --', () => {
     let commentsService: CommentsService

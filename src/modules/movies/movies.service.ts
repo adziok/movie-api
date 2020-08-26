@@ -1,3 +1,4 @@
+import { Movie } from './model/movie.model';
 import { Injectable } from '@nestjs/common'
 
 import { OmdbapiService } from '@externals/omdbapi/omdbapi.service'
@@ -15,7 +16,7 @@ export class MoviesService {
     public async searchMovie(searchParams: SearchMoviesDto) {
         const movie = await this.omdbapiService.search(searchParams)
 
-        const savedMovie = await this.movieRepository.createIfNotExists(movie)
+        const savedMovie = await this.saveMovie(movie)
 
         return savedMovie
     }
@@ -24,5 +25,9 @@ export class MoviesService {
         const savedMovies = await this.movieRepository.find(getSavedMoviesDto)
 
         return savedMovies
+    }
+
+    private async saveMovie(dto: Movie) {
+        return await this.movieRepository.createIfNotExists(dto)
     }
 }
