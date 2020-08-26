@@ -57,7 +57,7 @@ export class Movie extends BaseDBOBject {
     type: string
 
     @prop()
-    dvdRelasedAt?: Date | string
+    dvdRelasedAt?: any
 
     @prop()
     boxOffice: string

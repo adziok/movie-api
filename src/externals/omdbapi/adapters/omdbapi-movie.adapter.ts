@@ -1,9 +1,9 @@
-import { MovieRateAdapter } from './movie-rate.adapter'
 import { Exclude, Expose, classToPlain } from 'class-transformer'
 
 import { UNDEF_VAL } from '@shared/constants/undefined-value.const'
 import { OmdbapiResponseInterface } from './../interfaces/omdbapi-response.interface'
 import { ImdbInfoAdapter } from './imdb-info.adapter'
+import { MovieRateAdapter } from './movie-rate.adapter'
 
 export class OmdbapiMovieAdapter {
     @Exclude()
