@@ -1,7 +1,14 @@
 import { Test, TestingModule } from '@nestjs/testing'
-import { BadRequestException, InternalServerErrorException } from '@nestjs/common'
+import {
+    BadRequestException,
+    InternalServerErrorException,
+} from '@nestjs/common'
 
-import { omdbapiResponseMock, adaptedOmdbapiResponseMock, omdbapiErrorResponseMock } from './mocks/omdbapi-response.mock'
+import {
+    omdbapiResponseMock,
+    adaptedOmdbapiResponseMock,
+    omdbapiErrorResponseMock,
+} from './mocks/omdbapi-response.mock'
 import { OmdbapiService } from '../omdbapi.service'
 import { SearchMoviesDto } from '@shared/dtos/search-movies.dto'
 
@@ -14,10 +21,8 @@ describe('-- Omdbapi Service --', () => {
                 OmdbapiService,
                 {
                     provide: 'ConfigService',
-                    useValue: {
-
-                    }
-                }
+                    useValue: {},
+                },
             ],
         }).compile()
 
@@ -26,7 +31,7 @@ describe('-- Omdbapi Service --', () => {
 
     describe('* Adapte Api Response', () => {
         it('should return movie', async () => {
-            const omdbapiResponse = omdbapiResponseMock;
+            const omdbapiResponse = omdbapiResponseMock
 
             const commentsServiceCreateComment = jest.spyOn(
                 omdbapiService as any,
@@ -43,7 +48,7 @@ describe('-- Omdbapi Service --', () => {
 
             expect(result).toEqual(adaptedOmdbapiResponseMock)
         })
-        
+
         it('should thow BadRequestException', async () => {
             try {
                 const omdbapiErrorResponse = omdbapiErrorResponseMock
@@ -52,7 +57,8 @@ describe('-- Omdbapi Service --', () => {
                 // @ts-ignore
                 omdbapiService.adapteApiResponse(omdbapiErrorResponse)
             } catch (error) {
-                const instanceofBadRequestException = error instanceof BadRequestException
+                const instanceofBadRequestException =
+                    error instanceof BadRequestException
 
                 expect(instanceofBadRequestException).toBeTruthy()
             }
@@ -68,25 +74,19 @@ describe('-- Omdbapi Service --', () => {
                 'search',
             )
 
-            const callOmdbapi = jest.spyOn(
-                    omdbapiService as any,
-                    'callOmdbapi',
-                )
+            const callOmdbapi = jest
+                .spyOn(omdbapiService as any, 'callOmdbapi')
                 .mockResolvedValue({ data: omdbapiResponseMock })
 
-            const adapteApiResponse = jest.spyOn(
-                    omdbapiService as any,
-                    'adapteApiResponse',
-                )
+            const adapteApiResponse = jest
+                .spyOn(omdbapiService as any, 'adapteApiResponse')
                 .mockResolvedValue(adaptedOmdbapiResponseMock)
 
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             const result = await omdbapiService.search(searchMoviesDto)
 
-            expect(commentsServiceSearch).toHaveBeenCalledWith(
-                searchMoviesDto,
-            )
+            expect(commentsServiceSearch).toHaveBeenCalledWith(searchMoviesDto)
 
             expect(callOmdbapi).toBeCalledWith(searchMoviesDto)
 
@@ -94,28 +94,27 @@ describe('-- Omdbapi Service --', () => {
 
             expect(result).toEqual(adaptedOmdbapiResponseMock)
         })
-        
+
         it('should thow InternalServerErrorException', async () => {
             try {
                 const searchMoviesDto = new SearchMoviesDto()
-    
+
                 jest.spyOn(
-                        omdbapiService as any,
-                        'callOmdbapi',
-                    )
-                    .mockResolvedValue({ data: omdbapiResponseMock })
-    
+                    omdbapiService as any,
+                    'callOmdbapi',
+                ).mockResolvedValue({ data: omdbapiResponseMock })
+
                 jest.spyOn(
-                        omdbapiService as any,
-                        'adapteApiResponse',
-                    )
-                    .mockResolvedValue(null)
-    
+                    omdbapiService as any,
+                    'adapteApiResponse',
+                ).mockResolvedValue(null)
+
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
                 await omdbapiService.search(searchMoviesDto)
             } catch (error) {
-                const instanceofInternalServerErrorException = error instanceof InternalServerErrorException
+                const instanceofInternalServerErrorException =
+                    error instanceof InternalServerErrorException
 
                 expect(instanceofInternalServerErrorException).toBeTruthy()
             }

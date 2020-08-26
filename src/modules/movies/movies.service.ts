@@ -1,4 +1,4 @@
-import { Movie } from './model/movie.model';
+import { Movie } from './model/movie.model'
 import { Injectable } from '@nestjs/common'
 
 import { OmdbapiService } from '@externals/omdbapi/omdbapi.service'

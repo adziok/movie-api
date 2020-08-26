@@ -1,4 +1,4 @@
-import { MockType } from "@shared/utils/specs.utils";
+import { MockType } from '@shared/utils/specs.utils'
 
 export const mockOmdbapiServiceFactory: () => MockType<any> = jest.fn(() => ({
     search: jest.fn(),

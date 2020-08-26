@@ -1,13 +1,13 @@
-import { GetSavedMoviesDto } from './../dtos/get-saved-movies.dto';
-import { SearchMoviesDto } from './../../../shared/dtos/search-movies.dto';
+import { GetSavedMoviesDto } from './../dtos/get-saved-movies.dto'
+import { SearchMoviesDto } from './../../../shared/dtos/search-movies.dto'
 import { Test, TestingModule } from '@nestjs/testing'
 
 import { MovieRepository } from '../model/movie.repository'
 import { MoviesService } from '../movies.service'
 import { MockType, repositoryMockFactory } from '@shared/utils/specs.utils'
 import { Movie } from '../model/movie.model'
-import { mockOmdbapiServiceFactory } from './mocks/mock-omdbapi.service.factory';
-import { OmdbapiService } from '@externals/omdbapi/omdbapi.service';
+import { mockOmdbapiServiceFactory } from './mocks/mock-omdbapi.service.factory'
+import { OmdbapiService } from '@externals/omdbapi/omdbapi.service'
 
 describe('-- Movies Service --', () => {
     let moviesService: MoviesService
@@ -20,7 +20,7 @@ describe('-- Movies Service --', () => {
                 MoviesService,
                 {
                     provide: 'OmdbapiService',
-                    useFactory: mockOmdbapiServiceFactory
+                    useFactory: mockOmdbapiServiceFactory,
                 },
                 {
                     provide: 'MovieRepository',
@@ -40,13 +40,12 @@ describe('-- Movies Service --', () => {
 
             const newMovie = new Movie()
 
-            jest.spyOn(omdbapiServiceMock, 'search').mockReturnValue(
-                newMovie,
-            )
+            jest.spyOn(omdbapiServiceMock, 'search').mockReturnValue(newMovie)
 
-            jest.spyOn(movieRepositoryMock, 'createIfNotExists').mockReturnValue(
-                newMovie,
-            )
+            jest.spyOn(
+                movieRepositoryMock,
+                'createIfNotExists',
+            ).mockReturnValue(newMovie)
 
             const moviesServiceSearchMovie = jest.spyOn(
                 moviesService,
@@ -62,16 +61,14 @@ describe('-- Movies Service --', () => {
             expect(result).toEqual(newMovie)
         })
     })
-    
+
     describe('* Get Saved Movies', () => {
         it('return saved movies in database', async () => {
             const gerSavedMoviesDto = new GetSavedMoviesDto()
 
             const movies = [new Movie()]
 
-            jest.spyOn(movieRepositoryMock, 'find').mockReturnValue(
-                movies,
-            )
+            jest.spyOn(movieRepositoryMock, 'find').mockReturnValue(movies)
 
             const moviesServiceGetSavedMovies = jest.spyOn(
                 moviesService,

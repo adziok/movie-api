@@ -1,13 +1,13 @@
 import { Test, TestingModule } from '@nestjs/testing'
 import { getModelToken } from 'nestjs-typegoose'
 
-import { SearchMoviesDto } from '@shared/dtos/search-movies.dto';
-import { GetSavedMoviesDto } from './../dtos/get-saved-movies.dto';
-import { Movie } from './../model/movie.model';
-import { MoviesController } from './../movies.controller';
-import { MoviesService } from '../movies.service';
-import { MovieRepository } from '../model/movie.repository';
-import { mockOmdbapiServiceFactory } from './mocks/mock-omdbapi.service.factory';
+import { SearchMoviesDto } from '@shared/dtos/search-movies.dto'
+import { GetSavedMoviesDto } from './../dtos/get-saved-movies.dto'
+import { Movie } from './../model/movie.model'
+import { MoviesController } from './../movies.controller'
+import { MoviesService } from '../movies.service'
+import { MovieRepository } from '../model/movie.repository'
+import { mockOmdbapiServiceFactory } from './mocks/mock-omdbapi.service.factory'
 
 describe('-- Movies Controller --', () => {
     const fakeMovieModel = jest.fn()
@@ -24,7 +24,7 @@ describe('-- Movies Controller --', () => {
                 MovieRepository,
                 {
                     provide: 'OmdbapiService',
-                    useFactory: mockOmdbapiServiceFactory
+                    useFactory: mockOmdbapiServiceFactory,
                 },
                 {
                     provide: getModelToken('Movie'),
@@ -66,9 +66,7 @@ describe('-- Movies Controller --', () => {
                 expectedResult,
             )
 
-            expect(await moviesService.searchMovie(dto)).toBe(
-                expectedResult,
-            )
+            expect(await moviesService.searchMovie(dto)).toBe(expectedResult)
         })
     })
 })
