@@ -11,12 +11,11 @@ export class ConfigService {
     private envSchema: Joi.ObjectSchema = Joi.object({
         NODE_ENV: Joi.string().default('development'),
         PORT: Joi.number().default(4000),
-        JWT_SECRET: Joi.string(),
+        SECRET: Joi.string(),
+    
         MONGO_HOST: Joi.string().default('mongodb://localhost'),
         MONGO_PORT: Joi.number().default(27017),
         MONGO_DATABASE: Joi.string(),
-        REDIS_HOST: Joi.string(),
-        REDIS_PORT: Joi.number(),
 
         OMDBAPI_API_URL: Joi.string(),
         OMDBAPI_API_KEY: Joi.string(),
