@@ -10,7 +10,7 @@ module.exports = {
         prefix: `${__dirname}/`,
     }),
     "moduleFileExtensions": ["js", "json", "ts"],
-    "rootDir": ".",
+    "rootDir": "./test",
     "testRegex": ".e2e-spec.ts$",
     "transform": {
         "^.+\\.(t|j)s$": "ts-jest"
