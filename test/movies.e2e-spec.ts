@@ -2,12 +2,12 @@ import { Test, TestingModule } from '@nestjs/testing'
 import { INestApplication, ValidationPipe } from '@nestjs/common'
 import * as request from 'supertest'
 
-import { CreateCommentDto } from '@modules/comments/dtos/create-comment.dto'
+import { SearchMoviesDto } from '@shared/dtos/search-movies.dto'
 import { CoreModule } from '@core/core.module'
 import { ConfigService } from '@shared/modules/config/config.service'
 import { drooDatabase } from './test.utils'
 
-describe('-- Comments Controller --', () => {
+describe('-- Movies Controller --', () => {
     let app: INestApplication
 
     beforeEach(async () => {
@@ -30,15 +30,14 @@ describe('-- Comments Controller --', () => {
         await app.close()
     })
 
-    describe('* POST /comments', () => {
+    describe('* POST /movies', () => {
         it('should return status 201 and object with _id key', async () => {
-            const dto: CreateCommentDto = {
-                content: 'Hello Roman :)',
-                owner: 'User420',
+            const dto: SearchMoviesDto = {
+                search: 'Rocky',
             }
 
             const data = await request(app.getHttpServer())
-                .post('/comments')
+                .post('/movies')
                 .send(dto)
                 .expect(201)
 
@@ -47,66 +46,62 @@ describe('-- Comments Controller --', () => {
             expect(isMongoIdExists).toBeTruthy()
         })
 
-        it('should return status 400 when content param is to short', async () => {
-            const dto: CreateCommentDto = {
-                content: '',
-                owner: 'User420',
+        it('should return status 400 when search param is to short', async () => {
+            const dto: SearchMoviesDto = {
+                search: '',
             }
 
             await request(app.getHttpServer())
-                .post('/comments')
+                .post('/movies')
                 .send(dto)
                 .expect(400)
         })
 
-        it('should return status 400 when owner param is too shrot', async () => {
-            const dto: CreateCommentDto = {
-                content: 'Hello Roman :)',
-                owner: '',
+        it('should return status 400 when search movie is not found', async () => {
+            const dto: SearchMoviesDto = {
+                search: 'pas123asf123',
             }
 
             await request(app.getHttpServer())
-                .post('/comments')
+                .post('/movies')
                 .send(dto)
                 .expect(400)
         })
 
-        it('should return status 400 when params are not provided', async () => {
+        it('should return status 400 when search param is not provided', async () => {
             const dto = {}
 
             await request(app.getHttpServer())
-                .post('/comments')
+                .post('/movies')
                 .send(dto)
                 .expect(400)
         })
     })
 
-    describe('* GET /commnets', () => {
+    describe('* GET /movies', () => {
         it('should return status 200 and object with empty array', async () => {
             const data = await request(app.getHttpServer())
-                .get('/comments')
+                .get('/movies')
                 .expect(200)
 
             expect(data.body).toEqual([])
         })
 
         it('should create object and next return array with one object', async () => {
-            const dto: CreateCommentDto = {
-                content: 'Hello Roman :)',
-                owner: 'User420',
+            const dto: SearchMoviesDto = {
+                search: 'Rocky',
             }
 
             await request(app.getHttpServer())
-                .post('/comments')
+                .post('/movies')
                 .send(dto)
                 .expect(201)
 
             const data = await request(app.getHttpServer())
-                .get('/comments')
+                .get('/movies')
                 .expect(200)
 
             expect(data.body.length).toEqual(1)
-            expect(data.body[0].content).toEqual('Hello Roman :)')
         })
     })
 })

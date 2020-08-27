@@ -1,9 +1,11 @@
-import { MovieRate } from './movie-rate.model'
-import { prop, arrayProp } from '@typegoose/typegoose'
+import { prop, modelOptions, Severity } from '@typegoose/typegoose'
+import { Schema } from 'mongoose'
 
+import { MovieRate } from './movie-rate.model'
 import { BaseDBOBject } from '@shared/classes/base-db-model'
 import { ImdbInfo } from './imdb-info.model'
 
+@modelOptions({ options: { allowMixed: Severity.ALLOW } })
 export class Movie extends BaseDBOBject {
     @prop({ required: true })
     title: string
@@ -17,7 +19,7 @@ export class Movie extends BaseDBOBject {
     @prop()
     runtimeInMinutes: number
 
-    @arrayProp({ items: String })
+    @prop({ type: String })
     genre: string[]
 
     @prop({ required: true })
@@ -26,7 +28,7 @@ export class Movie extends BaseDBOBject {
     @prop()
     writer: string
 
-    @arrayProp({ items: String })
+    @prop({ type: String })
     actors: string[]
 
     @prop()
@@ -44,7 +46,7 @@ export class Movie extends BaseDBOBject {
     @prop()
     poster: string
 
-    @arrayProp({ items: MovieRate, _id: false })
+    @prop({ type: MovieRate, _id: false })
     ratings: MovieRate[]
 
     @prop()
@@ -56,7 +58,7 @@ export class Movie extends BaseDBOBject {
     @prop()
     type: string
 
-    @prop()
+    @prop({ type: Schema.Types.Mixed })
     dvdRelasedAt?: any
 
     @prop()

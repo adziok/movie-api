@@ -5,6 +5,7 @@ import { SharedModule } from '@shared/shared.module'
 import { ConfigModule } from '@shared/modules/config/config.module'
 import { ConfigService } from '@shared/modules/config/config.service'
 import { MoviesModule } from '@modules/movies/movies.module'
+import { CommentsModule } from '@modules/comments/comments.module'
 
 @Module({
     imports: [
@@ -21,6 +22,7 @@ import { MoviesModule } from '@modules/movies/movies.module'
         }),
         SharedModule,
         MoviesModule,
+        CommentsModule,
     ],
 })
 export class CoreModule {}
