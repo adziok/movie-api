@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+    movie-service:
+        build:
+            context: .
+        volumes:
+            - /builder/home/node/node_modules
+            - /builder/home/node_modules
+            - /builder/node_modules
+        depends_on:
+            - mongo
+        restart: on-failure
+        ports:
+            - '8140:4000'
+
+    mongo:
+        image: mongo:4.2
+        restart: on-failure
+        volumes:
+            - data:/data/db
+
+volumes:
+    data:
