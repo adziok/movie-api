@@ -79,7 +79,7 @@ describe('-- Movies Controller --', () => {
     })
 
     describe('* GET /movies', () => {
-        it('should return status 200 and object with empty array', async () => {
+        it('should return status 200 and empty array', async () => {
             const data = await request(app.getHttpServer())
                 .get('/movies')
                 .expect(200)

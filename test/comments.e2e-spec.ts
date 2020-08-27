@@ -82,7 +82,7 @@ describe('-- Comments Controller --', () => {
     })
 
     describe('* GET /commnets', () => {
-        it('should return status 200 and object with empty array', async () => {
+        it('should return status 200 and empty array', async () => {
             const data = await request(app.getHttpServer())
                 .get('/comments')
                 .expect(200)
