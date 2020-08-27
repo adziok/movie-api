@@ -35,7 +35,7 @@ export class ConfigService {
     }
 
     get restSecret(): string {
-        return this.envConfig.JWT_SECRET
+        return this.envConfig.SECRET
     }
 
     get mongoConnectionString(): string {
