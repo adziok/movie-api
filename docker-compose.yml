@@ -4,10 +4,10 @@ services:
     movie-service:
         build:
             context: .
-        volumes:
-            - /builder/home/node/node_modules
-            - /builder/home/node_modules
-            - /builder/node_modules
+        # volumes:
+        #     - /builder/home/node/node_modules
+        #     - /builder/home/node_modules
+        #     - /builder/node_modules
         depends_on:
             - mongo
         restart: on-failure
